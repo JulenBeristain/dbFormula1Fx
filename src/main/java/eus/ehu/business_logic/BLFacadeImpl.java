@@ -41,4 +41,9 @@ public class BLFacadeImpl implements BLFacade {
     public Pilot getPilotByName(String name) {
         return dbManager.getPilotByName(name);
     }
+
+    @Override
+    public void deletePilotById(int pilotId) {
+        dbManager.deletePilotById(pilotId);
+    }
 }

@@ -14,4 +14,5 @@ public interface BLFacade {
 
     List<Pilot> getPilotsByPoints(int minPoints);
     Pilot getPilotByName(String name);
+    void deletePilotById(int pilotId);
 }

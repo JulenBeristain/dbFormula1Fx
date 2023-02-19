@@ -6,18 +6,18 @@ import eus.ehu.business_logic.BLFacadeImpl;
 public class Main {
     public static void main(String[] args) {
         BLFacade bussinesLogic = new BLFacadeImpl();
-        bussinesLogic.getPilotsByNationality("French").forEach(System.out::println);
+        //bussinesLogic.getPilotsByNationality("French").forEach(System.out::println);
 
         //DbAccessManager dataManager = DbAccessManager.getInstance();
-        /*
-        dataManager.storePilot("Lewis Hamilton", "British", 380);
-        dataManager.storePilot("Max Verstappen", "French", 400);
-        dataManager.storePilot("Sergio Perez", "Italian", 420);
-        dataManager.storePilot("Charles Leclerc", "Polish", 440);
-        dataManager.storePilot("Carlos Sainz", "Spanish", 460);
-        dataManager.storePilot("George Russell", "British", 480);
-        dataManager.storePilot("Esteban Ocon", "French", 500);
-         */
+
+        bussinesLogic.storePilot("Lewis Hamilton", "British", 380);
+        bussinesLogic.storePilot("Max Verstappen", "French", 400);
+        bussinesLogic.storePilot("Sergio Perez", "Italian", 420);
+        bussinesLogic.storePilot("Charles Leclerc", "Polish", 440);
+        bussinesLogic.storePilot("Carlos Sainz", "Spanish", 460);
+        bussinesLogic.storePilot("George Russell", "British", 480);
+        bussinesLogic.storePilot("Esteban Ocon", "French", 500);
+
 
         //dataManager.getAllPilots().forEach(System.out::println);
         //dataManager.getPilotsByNationality("French").forEach(System.out::println);

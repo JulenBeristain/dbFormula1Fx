@@ -97,10 +97,10 @@ public class DbAccessManager {
         this.open();
 
         try {
-            String query = "SELECT name, nationality, points FROM pilots";
+            String query = "SELECT id, name, nationality, points FROM pilots";
             ResultSet rs = conn.createStatement().executeQuery(query);
             while (rs.next()) {
-                pilots.add(new Pilot(rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
+                pilots.add(new Pilot(rs.getInt("id"), rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -125,7 +125,7 @@ public class DbAccessManager {
 
             ResultSet rs  = pstmt.executeQuery();
             while (rs.next()) {
-                result.add(new Pilot(rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
+                result.add(new Pilot(rs.getInt("id"), rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
             }
 
         } catch (SQLException e) {
@@ -155,7 +155,7 @@ public class DbAccessManager {
         }
         */
         //or making a selection where points > minPoints directly in the DB with SQL
-        String sql = "SELECT name, nationality, points "
+        String sql = "SELECT id, name, nationality, points "
                 + "FROM pilots WHERE points > ?";
 
         try (PreparedStatement pstmt  = conn.prepareStatement(sql)){
@@ -164,7 +164,7 @@ public class DbAccessManager {
 
             ResultSet rs  = pstmt.executeQuery();
             while (rs.next()) {
-                result.add(new Pilot(rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
+                result.add(new Pilot(rs.getInt("id"), rs.getString("name"), rs.getString("nationality"), rs.getInt("points")));
             }
 
         } catch (SQLException e) {
@@ -196,7 +196,7 @@ public class DbAccessManager {
             pstmt.setInt(1, morePoints);
             pstmt.setString(2, pilotName);
             pstmt.executeUpdate();
-            System.out.println(pilotName + " has been updated");
+            //System.out.println(pilotName + " has been updated");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -207,7 +207,7 @@ public class DbAccessManager {
 
         this.open();
 
-        String sql = "SELECT name, nationality, points "
+        String sql = "SELECT id, name, nationality, points "
                 + "FROM pilots WHERE name = ?";
 
         Pilot result = null;
@@ -217,7 +217,9 @@ public class DbAccessManager {
             pstmt.setString(1, name);
             ResultSet rs  = pstmt.executeQuery();
             if (rs.next()){     //true <-> There is a pilot with the name (only one)
-                result = new Pilot(rs.getString("name"),
+                result = new Pilot(
+                        rs.getInt("id"),
+                        rs.getString("name"),
                         rs.getString("nationality"),
                         rs.getInt("points"));
             }   //false -> result remains null
@@ -229,5 +231,15 @@ public class DbAccessManager {
         return result;
     }
 
+    public void deletePilotById(int pilotId) {
+        this.open();
+        String sql = "DELETE FROM pilots WHERE id = ?";
+        try (PreparedStatement pstmt  = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, pilotId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        this.close();
+    }
 }
-

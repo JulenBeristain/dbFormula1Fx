@@ -1,11 +1,13 @@
 package eus.ehu.domain;
 
 public class Pilot {
-    String name;
-    String nationality;
-    int points;
+    private final int id;
+    private final String name;
+    private final String nationality;
+    private int points;
 
-    public Pilot(String name, String nat, int pts) {
+    public Pilot(int id, String name, String nat, int pts) {
+        this.id = id;
         this.name = name;
         this.nationality = nat;
         this.points = pts;
@@ -17,7 +19,15 @@ public class Pilot {
 
     @Override
     public String toString() {
-        return String.format("%s (%s) - %d points", name, nationality, points);
+        return String.format("%d %s (%s) - %d points", id, name, nationality, points);
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
 

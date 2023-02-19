@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.ehu.dbformula1fx.AddPilotController">
+   <children>
+      <Label layoutX="178.0" layoutY="73.0" text="Full Name:" />
+      <Label layoutX="176.0" layoutY="119.0" text="Nationality:" />
+      <Label layoutX="199.0" layoutY="162.0" text="Points:" />
+      <ComboBox fx:id="newNationalityCB" layoutX="264.0" layoutY="115.0" prefWidth="150.0" />
+      <TextField fx:id="newPilotNameField" layoutX="264.0" layoutY="69.0" />
+      <TextField fx:id="newPilotPointsField" layoutX="265.0" layoutY="158.0" />
+      <Button layoutX="184.0" layoutY="220.0" mnemonicParsing="false" onAction="#addNewPilot" text="Add the new Pilot" />
+      <Button layoutX="338.0" layoutY="220.0" mnemonicParsing="false" onAction="#goBackMainMenu" text="Go back" />
+      <Label fx:id="output" layoutX="160.0" layoutY="283.0" prefHeight="17.0" prefWidth="337.0" textAlignment="CENTER" />
+   </children>
+</AnchorPane>
